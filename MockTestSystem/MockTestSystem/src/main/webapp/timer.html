@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            background-color: #e0f7fa;
+            color: #0277bd;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    Time Left: <span id="timer">5:00</span>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let timeLeft = 300;
+            const timerDisplay = document.getElementById("timer");
+
+            function updateTimer() {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+                if (timeLeft === 60) {
+                    alert("Only 1 minute left!");
+                }
+            }
+
+            updateTimer();
+
+            const interval = setInterval(() => {
+                timeLeft--;
+                updateTimer();
+
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    alert("Time's up! Please submit your test.");
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
